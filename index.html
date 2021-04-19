@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+    
+    <header class="header">
+        <div class="container header-container">
+            <div class="header-logo">
+                <img  src="./img/Color.png" alt="logo">
+            </div>
+            <div class="header-search">
+                <input type="text" name="fiter" class="filter" placeholder="Search task for to do">
+            </div>
+        </div>
+ 
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <nav class="tabs-wrap">
+                <ul>
+                    <li><button class="btns-all choose" data-tabs="add-task">All</button></li>
+                    <li><button class="btns-active" data-tabs="active">Active</button></li>
+                    <li><button class="btns-done" data-tabs="line-through">Done</button></li>
+                </ul>
+               
+                
+            </nav>
+
+        
+            <div class="tasks">
+                <form id="form">
+                    <div class="tasks__new-task">
+                        <label for="new-task">New Task</label>
+                        <textarea name="new-task" id="new-task" class="new-task"></textarea>
+                    </div>
+                <input type="submit" value="ADD" class="btn-add">
+                </form>
+                <ul class="task-list">
+
+                </ul>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 759px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.header-logo {
+    margin-right: 20px;
+}
+
+.filter {
+    background: linear-gradient(0deg, #F6F6F6, #F6F6F6), #FEFEFE;
+    border: 1px solid #E2E2E2;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 9px 10px 9px 35px;
+    width: 540px;
+    position: relative;
+}
+
+.header-search {
+    position: relative;
+}
+
+.header-search::after {
+    content: "";
+    /* display: block; */
+    position: absolute;
+    top: 17px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: url(./img/Search.svg);
+}
+
+.main {
+    /* background-image: url(./img/taking_notes.png); */
+    background-repeat: no-repeat;
+    position: relative;
+    right: 0;
+    /* background-size: contain; */
+    width: 100vw;
+    height: 100vh;
+}
+
+.tabs-wrap {
+    border-top: 1px solid #E2E2E2;
+}
+
+.tabs-wrap ul {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.tabs-wrap ul li button.choose {  
+    border-top: 4px solid #2F80ED;
+    color: #53565A;
+    opacity: 1;
+}
+
+.btns-all,
+.btns-active,
+.btns-done {
+    font-weight: 900;
+    width: 175px;
+    height: 30px;   
+    border: none;
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    opacity: 0.5;
+    color: #53565A;
+}
+
+.choose {
+    border-top: 4px solid #2F80ED;
+    color: #53565A;
+    opacity: 1;
+}
+
+
+label {
+    font-size: 12px;
+    color: #706E6B;
+}
+
+.new-task,
+.add-task {
+    width: 740px;
+    height: 90px;   
+    border: 1px solid #DDDBDA;
+    border-radius: 4px;
+    padding: 16px 23px;
+    font-size: 24px;
+    position: relative;
+    /* margin-bottom: 25px; */
+}
+
+.btn-add {
+    float: right;
+    width: 190px;
+    height: 36px;
+    background: #2F80ED;
+    color: #fff;
+}
+
+.task-list {
+    margin-top: 70px;
+}
+.task-list > li {
+    margin-bottom: 20px;
+}
+
+.task-list > .add-task:hover  {
+    border: 1px solid rgba(47, 128, 237, 0.5);
+    box-shadow: 0px 6px 20px rgba(47, 128, 237, 0.75);
+}
+/* 
+.add-task > button {
+    float: right;
+} */
+
+.add-task::before {
+    content: '>>';
+    display: none;
+}
+
+.task-list > .add-task:hover .important,
+.task-list > .add-task:hover .delete {
+    display: block;
+}
+
+.important {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 180px;
+    height: 35px;
+    background-color: #27AE60;
+    color: #fff;
+    border-radius: 15px;
+    border: 1px solid #000;
+    margin-right: 70px;
+    cursor: pointer;
+    display: none;
+}
+
+.important:focus {
+    outline: none;
+    box-shadow: 0 0 0 5px rgba(21, 156, 228, 0.4);
+}
+
+.unimportant {
+    background-color: #c2c2c2;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.delete {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background-image: url(./img/Delete.svg);
+    background-position: center;
+    background-color: #fff;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+.task-list p {
+    width: 150px;
+}
+
+/* button {
+    position: absolute;
+    right: 50px;
+} */
+
+
+.hidden {
+    opacity: 0;
+    cursor: inherit;
+}
+
+.invisible {
+    display: none;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+p {
+    cursor: pointer;
+}
