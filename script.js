@@ -1,11 +1,10 @@
-// const addBtn = document.querySelector('.btn-add');
-const form = document.querySelector('#form');
-const taskList = document.querySelector('.task-list');
-const filter = document.querySelector('.filter');
-const inputTask = document.querySelector('#new-task');
-const deleteItem = document.querySelector('.delete');
+const form = document.querySelector('#form'),
+      taskList = document.querySelector('.task-list'),
+      filter = document.querySelector('.filter'),
+      inputTask = document.querySelector('#new-task'),
+      deleteItem = document.querySelector('.delete'),
 
-const tabsWrap = document.querySelector('.tabs-wrap');
+      tabsWrap = document.querySelector('.tabs-wrap');
 
 const tabs = document.querySelectorAll('.tabs-wrap > ul > li > button'),
       all = document.querySelectorAll('p'),
@@ -29,9 +28,6 @@ loadEventListeners();
 
 function loadEventListeners() {
 
-  // DOM Load Event
-    // document.addEventListener('DOMContentLoaded', getTasks);
-
     inputTask.addEventListener('keydown', enter)
 
     form.addEventListener('submit', submit);
@@ -47,30 +43,6 @@ function loadEventListeners() {
     tabsWrap.addEventListener('click', action);
 
 }
-
-
-// Получить данные из LS
-/*
-function getTasks() {
-  let tasks;
-  if (localStorage.getItem('tasks') === null) {
-      tasks = [];
-  } else {
-      tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.forEach((task) => {
-     // Создание li элемента
-     const li = document.createElement("li");
-     // Добавляем класс
-    li.className = 'add-task';
-
-    li.innerHTML = `<p>${task}</p><button class="important">MARK IMPORTANT</button><button class="delete"></button>`;
-
-    taskList.appendChild(li);
-  });
-}
-*/
 
 function enter(e) {
     if (!e.shiftKey && e.keyCode === 13) {
@@ -94,57 +66,18 @@ function addTask(task) {
      // Добавляем класс
     li.className = 'add-task';
     li.innerHTML = `<p>${task}</p><button class="important">MARK IMPORTANT</button><button class="delete"></button>`;
-
-    // Хранение в LocalStorage
-
-    // storeTaskInLocalStorage(task);
     
     taskList.appendChild(li);
     updateLocalStorage();
 }
 
-/*
-function storeTaskInLocalStorage(task) {
-  let tasks;
-  if (localStorage.getItem('tasks') === null) {
-      tasks = [];
-  } else {
-      tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.push(task);
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-
-}
-*/
 function removeItem(e) {
     if (e.target.classList.contains('delete')) {
         e.target.parentElement.remove();
         updateLocalStorage();
-        // remove from LS
-        // removeTaskFromLocalStorage(e.target.parentElement.remove());
-        // removeItem(tasks);
     }
 }  
-/*
-function removeTaskFromLocalStorage(taskItem) {
-  let tasks;
-  if (localStorage.getItem('tasks') === null) {
-      tasks = [];
-  } else {
-      tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
 
-  tasks.forEach((task, index) => {
-    if (taskItem === task) {
-      task.removeItem(task);
-    }
-  });
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-*/
 function addImportant(e) {
 
     // console.log(e.target);
@@ -222,12 +155,13 @@ function action(e) {
   	item.classList.remove('choose');
   })
   target.classList.add('choose');
-
+  form.style.display = 'block';
   let value = btn.getAttribute('data-tabs');
   // console.log(value);
   
   Array.from(li).forEach((item) => {
       item.style.display = 'none';
+      
   }) 
     
     if (value === 'active') {
@@ -239,6 +173,7 @@ function action(e) {
           }
         })
     } else if (value === 'done') {
+      form.style.display = 'none';
         Array.from(li).forEach(item => {
           if (item.firstElementChild.classList.contains('done')) {
               item.style.display = 'block';
