@@ -68,11 +68,34 @@ ul {
     position: relative;
 }
 
+/* .header-search button[type='reset'] {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    right: 10px;
+    color: #666;
+    border: 0;
+    /* display: none; */
+    /* padding: 0 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: background 200ms;
+    outline: none;
+} */
+
+/* .header-search button[type='reset']:hover {
+    background-color: #eee; 
+} */
+
+/* .header-search input:valid ~ button[type="reset"] {
+    display: block;
+}   */
+
 .header-search::after {
     content: "";
     /* display: block; */
     position: absolute;
-    top: 17px;
+    top: 13px;
     left: 15px;
     width: 12px;
     height: 12px;
@@ -202,7 +225,7 @@ label {
     background-color: #c2c2c2;
 }
 
-.bold {
+.active {
     font-weight: 900;
 }
 
@@ -222,7 +245,7 @@ label {
 }
 
 .task-list p {
-    width: 150px;
+    width: 50%;
 }
 
 /* button {
@@ -240,7 +263,7 @@ label {
     display: none;
 }
 
-.line-through {
+.done {
     text-decoration: line-through;
 }
 
