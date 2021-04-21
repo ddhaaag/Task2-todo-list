@@ -5,50 +5,32 @@ const filter = document.querySelector('.filter');
 const inputTask = document.querySelector('#new-task');
 const deleteItem = document.querySelector('.delete');
 
-const tabs = document.querySelectorAll('.tabs-wrap ul li button');
-const all = document.querySelectorAll('.add-task');
-const actives = document.querySelectorAll('.active');
-const dones = document.querySelectorAll('.task-list .add-task p.line-through');
+const tabsWrap = document.querySelector('.tabs-wrap');
 
-tabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-      tabs.forEach((tab) => {
-        tab.classList.remove('choose');
-      })
+const tabs = document.querySelectorAll('.tabs-wrap > ul > li > button'),
+      all = document.querySelectorAll('p'),
+      actives = document.querySelectorAll('.task-list > .add-task > p.active'),
+      dones = document.querySelectorAll('.task-list > .add-task > p.done'),
+      li = document.getElementsByClassName('add-task');
 
-    tab.classList.add('choose');
+window.onload = () => {
+  taskList.innerHTML = localStorage.getItem('todos');
+      
+  taskList.childNodes.forEach(node => {
+    node.style.display = 'block';
+  });
+};
 
-    let tabval = tab.getAttribute('data-tabs');
-    
-    all.forEach((item)=>{
-			item.style.display = "none";
-		})
-
-    if (tabval === 'active') {
-       actives.forEach((active) => {
-         active.style.display = 'block';
-       })
-    } else if (tabval === 'line-through') {
-      dones.forEach((done) => {
-        done.style.display = 'block';
-      })
-    } else {
-      all.forEach((item) => {
-        item.style.display = 'block';
-      })
-    }
-
-  })
-  
-})
-
+function updateLocalStorage() {
+  localStorage.setItem('todos', taskList.innerHTML);
+}
 
 loadEventListeners();
 
 function loadEventListeners() {
 
   // DOM Load Event
-    document.addEventListener('DOMContentLoaded', getTasks);
+    // document.addEventListener('DOMContentLoaded', getTasks);
 
     inputTask.addEventListener('keydown', enter)
 
@@ -62,11 +44,13 @@ function loadEventListeners() {
 
     filter.addEventListener('keyup', filterItems);
 
-    tabs.addEventListener('click', action);
+    tabsWrap.addEventListener('click', action);
 
 }
 
-// Получить данные из Lc 
+
+// Получить данные из LS
+/*
 function getTasks() {
   let tasks;
   if (localStorage.getItem('tasks') === null) {
@@ -86,7 +70,7 @@ function getTasks() {
     taskList.appendChild(li);
   });
 }
-
+*/
 
 function enter(e) {
     if (!e.shiftKey && e.keyCode === 13) {
@@ -113,11 +97,13 @@ function addTask(task) {
 
     // Хранение в LocalStorage
 
-    storeTaskInLocalStorage(task);
+    // storeTaskInLocalStorage(task);
     
     taskList.appendChild(li);
+    updateLocalStorage();
 }
 
+/*
 function storeTaskInLocalStorage(task) {
   let tasks;
   if (localStorage.getItem('tasks') === null) {
@@ -131,17 +117,17 @@ function storeTaskInLocalStorage(task) {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
 }
-
+*/
 function removeItem(e) {
     if (e.target.classList.contains('delete')) {
         e.target.parentElement.remove();
-
+        updateLocalStorage();
         // remove from LS
-        removeTaskFromLocalStorage(e.target.parentElement.parentElement);
-        removeItem(tasks);
+        // removeTaskFromLocalStorage(e.target.parentElement.remove());
+        // removeItem(tasks);
     }
 }  
-
+/*
 function removeTaskFromLocalStorage(taskItem) {
   let tasks;
   if (localStorage.getItem('tasks') === null) {
@@ -151,14 +137,14 @@ function removeTaskFromLocalStorage(taskItem) {
   }
 
   tasks.forEach((task, index) => {
-    if (taskItem.textContent === task) {
-      tasks.splice(index, 1);
+    if (taskItem === task) {
+      task.removeItem(task);
     }
   });
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
-
+*/
 function addImportant(e) {
 
     // console.log(e.target);
@@ -178,21 +164,17 @@ function addImportant(e) {
         } else {
           e.target.textContent = 'MARK IMPORTANT';
           para.firstChild.remove();
-          // e.target.className == 'important' ? e.target.className = 'unimportant' : e.target.className = 'important';
 
         }
         e.target.classList.toggle('unimportant');
 
-        para.classList.toggle('bold');
+        para.classList.toggle('active');
         // Создание звезды
-        
+        updateLocalStorage();
         
     }
             
 }
-
-
-
 
 function filterItems(e) {
     const text = e.target.value.toLowerCase();
@@ -221,8 +203,8 @@ function throughTask(e) {
         importantBtn = task.querySelector('.important');
         importantBtn.classList.toggle('hidden');
 
-        taskText.classList.toggle('line-through');
-
+        taskText.classList.toggle('done');
+        updateLocalStorage();
       }
 
     }
@@ -230,22 +212,41 @@ function throughTask(e) {
 
 function action(e) {
 
-  // const tasks = document.querySelectorAll('.task-list .add-task');
-  // let filter = e.target.dataset.filter;
+  let btn = e.target.closest('button');
 
-  // tasks.forEach(task => {
-  //   task.classList.contains(filter)
-  //   ? task.classList.remove('invisible') 
-  //   : task.classList.add('invisible');
+  if (!btn) return;
 
-  // });
+  const tabs = document.querySelectorAll('.tabs-wrap > ul > li > button');
+	const target = e.target;
+  Array.from(tabs).forEach(item => {
+  	item.classList.remove('choose');
+  })
+  target.classList.add('choose');
 
-  // console.log(filter);
-
-  // tabs.forEach((tab) => {
-  //   console.log('clicked');
-  // })
-
-
-
-}
+  let value = btn.getAttribute('data-tabs');
+  // console.log(value);
+  
+  Array.from(li).forEach((item) => {
+      item.style.display = 'none';
+  }) 
+    
+    if (value === 'active') {
+        Array.from(li).forEach(item => {
+          if (item.firstElementChild.classList.contains('done')) {
+                item.style.display = 'none';
+          } else {
+            item.style.display = 'block';
+          }
+        })
+    } else if (value === 'done') {
+        Array.from(li).forEach(item => {
+          if (item.firstElementChild.classList.contains('done')) {
+              item.style.display = 'block';
+          }   
+        })
+    } else {
+        Array.from(li).forEach((item) => {
+          item.style.display = 'block';
+        })
+    } 
+};
