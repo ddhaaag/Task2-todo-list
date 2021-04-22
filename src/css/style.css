@@ -30,11 +30,19 @@ dd {
   margin: 0;
 }
 
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+  }
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    /* background-image: url(./img/taking_notes.png); */
-    /* background-repeat: no-repeat; */
+}
+
+img {
+    max-width: 100%;
+    display: block;
 }
 
 ul {
@@ -83,7 +91,7 @@ ul {
     left: 15px;
     width: 12px;
     height: 12px;
-    background: url(./img/Search.svg);
+    background: url(../img/Search.svg);
 }
 
 .main {
@@ -149,12 +157,13 @@ label {
 .new-task,
 .add-task {
     width: 100%;
-    height: 90px;   
+    min-height: 90px;   
     border: 1px solid #DDDBDA;
     border-radius: 4px;
     padding: 16px 23px;
-    font-size: 24px;
+    font-size: 20px;
     position: relative;
+    z-index: 100;
 }
 
 .add-task {
@@ -200,6 +209,7 @@ label {
     right: 0;
     top: 10px;
     width: 180px;
+    /* width: 25%; */
     height: 35px;
     background-color: #27AE60;
     color: #fff;
@@ -227,7 +237,7 @@ label {
     position: absolute;
     right: 0;
     top: 10px;
-    background-image: url(./img/Delete.svg);
+    background-image: url(../img/Delete.svg);
     background-position: center;
     background-color: #fff;
     margin-right: 10px;
@@ -239,7 +249,8 @@ label {
 }
 
 .task-list p {
-    width: 50%;
+    width: 60%;
+    word-wrap: break-word;
 }
 
 .hidden {
@@ -257,4 +268,49 @@ label {
 
 p {
     cursor: pointer;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .add-task {
+        display: flex;
+        flex-direction: column;
+    }
+
+   .task-list p {
+       margin-top: 40px;
+       width: 100%;
+   }
+}
+
+@media only screen and (max-width: 400px) {
+    .add-task {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .important {
+        width: 120px;
+    }
+
+   .task-list p {
+       margin-top: 40px;
+       width: 100%;
+   }
+
+   .header-container {
+       flex-direction: column;
+   }
+
+   .header-search {
+       /* margin-top: 10px; */
+       margin: 10px auto;
+   }
+
+   .tasks__new-task,
+   .tabs-wrap,
+   .task-list,
+   .filter  {
+       width: 90%;
+   }
 }
