@@ -28,6 +28,7 @@
 * В function action(e) сделать только один перебор массива Array.from(li).forEach для лучшей чиатемости.
 * В функциях обработчиках событий вместо использования event объекта использовать деструтуризация с получением сразу нужных для работы полей. Пример:
 
+```javascript
     // Вместо
     function removeItem(e) {
         if (e.target.classList.contains('delete')) {
@@ -42,3 +43,4 @@
             updateLocalStorage();
         }
     }
+```
