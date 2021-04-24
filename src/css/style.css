@@ -70,7 +70,6 @@ ul {
 .header-search {
     position: relative;
     width: 100%;
-    /* max-width: 100%; */
 }
 
 .filter {
@@ -85,7 +84,6 @@ ul {
 
 .header-search::after {
     content: "";
-    /* display: block; */
     position: absolute;
     top: 13px;
     left: 15px;
@@ -179,6 +177,12 @@ label {
     margin-top: 10px;
     align-self: flex-end;
     cursor: pointer;
+    border: none;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-add:focus {
+    outline: 2px solid #000;
 }
 
 .task-list {
@@ -186,6 +190,7 @@ label {
     width: 80%;
 }
 .task-list > li {
+    position: relative;
     margin-bottom: 20px;
 }
 
@@ -209,7 +214,6 @@ label {
     right: 0;
     top: 10px;
     width: 180px;
-    /* width: 25%; */
     height: 35px;
     background-color: #27AE60;
     color: #fff;
@@ -245,6 +249,7 @@ label {
     cursor: pointer;
     width: 40px;
     height: 40px;
+    border-radius: 50%;
     display: none;
 }
 
@@ -254,7 +259,8 @@ label {
 }
 
 .hidden {
-    opacity: 0;
+    visibility: hidden;
+    /* opacity: 0; */
     cursor: inherit;
 }
 
@@ -288,7 +294,7 @@ p {
         display: flex;
         flex-direction: column;
     }
-    
+
     .important {
         width: 120px;
     }
@@ -303,8 +309,17 @@ p {
    }
 
    .header-search {
-       /* margin-top: 10px; */
        margin: 10px auto;
+   }
+
+   .header-logo img {
+       margin-top: 5px;
+   }
+
+   .btns-all,
+   .btns-active,
+   .btns-done {
+       padding-top: 5px;
    }
 
    .tasks__new-task,
